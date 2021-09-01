@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haoge.travel.mapper.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.haoge.travel.model.Comment">
+    <id column="comment_id" jdbcType="VARCHAR" property="commentId" />
+    <result column="article_id" jdbcType="VARCHAR" property="articleId" />
+    <result column="commentor_id" jdbcType="VARCHAR" property="commentorId" />
+    <result column="commentor_name" jdbcType="VARCHAR" property="commentorName" />
+    <result column="comment_create_time" jdbcType="TIMESTAMP" property="commentCreateTime" />
+    <result column="comment_likes" jdbcType="INTEGER" property="commentLikes" />
+    <result column="comment_body" jdbcType="VARCHAR" property="commentBody" />
+    <result column="reply_comment_id" jdbcType="VARCHAR" property="replyCommentId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    comment_id, commentor_id, comment_create_time, article_id, comment_likes, comment_body,
+    reply_comment_id,commentor_name
+  </sql>
+  <select id="selectCommentListByArticleId" resultType="com.haoge.travel.model.VO.CommentListVO">
+    select a.user_id as userId,a.user_nickname as userNickname,a.user_profile_picture as userProfilePicture,a.user_level as userLevel,
+           b.comment_id as commentId,b.comment_create_time as commentCreateTime,b.comment_body as commentBody,
+           c.commentor_name as quoteUserNickname,c.comment_create_time as quoteCommentCreateTime,c.comment_body as quoteCommentBody
+        from user a join comments b on a.user_id = b.commentor_id left join comments c on c.comment_id = b.reply_comment_id where #{articleId} = b.article_id order by b.comment_create_time
+  </select>
+  <insert id="insertComment">
+    insert into comments (
+                      comment_id,
+                      article_id,
+                      commentor_id,
+                      commentor_name,
+                      comment_create_time,
+                      comment_likes,
+                      comment_body,
+                      reply_comment_id
+                    )
+                    values(
+                           #{commentId},
+                           #{articleId},
+                           #{commentorId},
+                           #{commentorName},
+                           #{commentCreateTime},
+                           #{commentLikes},
+                           #{commentBody},
+                           #{replyCommentId}
+                          )
+  </insert>
+
+</mapper>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<div th:replace="header::header(游记详情)"></div>
+<body>
+    <section>
+        <input id="hidden-articleId" type="text" hidden="hidden" th:value="${data.articleId}">
+        <div id="article-picture" style="">
+        </div>
+        <!--文章头部导航栏-->
+        <div style="height: 75px;border-bottom: 1px solid #d7d7d7">
+            <img th:src="${data.user.userProfilePicture}" class="rounded-circle" style="height: 120px;width: 120px;position: absolute;left: 150px;top: 430px">
+            <div id="article-info" style="width: 480px;margin:15px auto auto 300px;float: left">
+                <a th:href="@{#}" th:text="${data.user.userNickname}" style="font-size: 20px"></a>
+                <span>
+                    <a th:text="LV. + ${data.user.userLevel}"></a>
+                    <button type="button" style="padding: 0.1rem 0.3rem;font-size: 7px" class="btn btn-primary">+关注</button>
+                </span>
+                <span id="articleCreateTime"></span>
+                <span>
+                    <i class='fas fa-eye'></i>
+                    <a id="articleViews"></a>
+                </span>
+            </div>
+            <div style="margin: 10px 250px auto auto;width: 170px;float: right;font-size: 25px;line-height: 1">
+                <div style="float: right;text-align: center">
+                    <a href="javascript:void (0)" onclick="">
+                        <i class="far fa-heart" style="color: #ff9b00"></i> <br>
+                        <span id="articleLikes" style="font-size: 13px"></span>
+                    </a>
+                </div>
+                <div style="float: left;text-align: center">
+                    <a href="javascript:void (0)" onclick="">
+                        <i class="far fa-star" style="color: #00e0f7"></i> <br>
+                        <span id="articleCollections" style="font-size: 13px"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--文章简介、正文、评论-->
+        <div style="width: 700px;margin:20px auto auto 150px;float: left">
+            <div style="width: 700px;height: 110px;border: 1px dashed #d7d7d7">
+                <div class="tarvel_dir_list clearfix">
+                    <ul>
+                        <li><span><i class="fas fa-map-marker-alt"></i></span>旅行地点<span>/</span><a id="travelPlace"></a></li>
+                        <li><span><i class="far fa-clock"></i></span>出发时间<span>/</span><a id="departureDate"></a></li>
+                        <li><span><i class="far fa-moon"></i></span>出行天数<span>/</span><a id="travelDays"></a> 天</li>
+                        <li><span><i class="fas fa-dollar-sign"></i></span>人均费用<span>/</span><a id="travelCost"></a>RMB</li>
+                    </ul>
+                </div>
+            </div>
+            <!--文章正文-->
+            <div id="article-container" style="width:100%;border-bottom: 1px solid #d7d7d7;padding-bottom: 70px">
+
+            </div>
+            <span style="float: right"><a href="javascript:void (0)" id="report" onclick="">举报</a></span> <br><br><br>
+            <!--文章评论-->
+            <div id="article-comments">
+                <div th:each="commentVO,commentListVOStat:${data.commentListVO}" class="mfw-cmt _j_reply_item" id="reply_127710842" data-rid="127710842" data-username="青木堂堂主">
+                    <div class="mcmt-info">
+                        <div class="mcmt-photo">
+                            <a th:href="@{'/user/' + ${commentVO.userId}}" th:title="${commentVO.userNickname}" target="_blank">
+                                <img th:src="${commentVO.userProfilePicture}" th:alt="头像" width="48" height="48">
+                            </a>
+                        </div>
+                        <div class="mcmt-user">
+                            <a th:href="@{'/user/' + ${commentVO.userId}}" target="_blank" class="name" th:text="${commentVO.userNickname}"></a>
+                            <a class="level" th:text="LV. + ${commentVO.userLevel}">LV.6</a>
+                            <a href="javascript:void(0);" class="per_attention">
+                                <img src="http://images.mafengwo.net/images/home/tweet/btn_sfollow.gif" title="关注TA" width="38" height="13" border="0">
+                            </a>
+                        </div>
+                        <div class="mcmt-other">
+
+                            <span class="floor" th:text="${commentListVOStat.index+1} + F"></span>
+                        </div>
+                    </div>
+                    <div class="mcmt-con-wrap clearfix">
+                        <div class="mcmt-con">
+                            <div class="mcmt-quote" th:if="${commentVO.quoteUserNickname != null}">
+                                <p th:text="引用 + ' ' + ' '+ ${commentVO.quoteUserNickname} + ' '+ ' ' + 发表于 + ' ' + ${commentVO.quoteCommentCreateTime} + ' ' + 的回复">引用 大黑人 发表于 2021-07-24 10:42:35 的回复：</p>
+                                <p class="show-emoji" th:text="${commentVO.quoteCommentBody}">请问您用的什么相机？四只狗狗都很乖吗？摆拍都这么配合，跟大叔的合影真和谐</p>
+                            </div>
+                            <div class="mcmt-word">
+                                <p class="_j_reply_content show-emoji" th:text="${commentVO.commentBody}">中午后是真心热，哎！今后夏季再也不去海岛了！太热了！
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mcmt-bot">
+                        <div class="time" th:text="${commentVO.commentCreateTime}">2021-08-20 20:36</div>
+                        <div class="option">
+                            <a href="javascript:void (0)" class="reply-report" th:onclick="report(1,[[${commentVO.commentId}]])">举报</a>
+                            <a href="javascript:void (0)" class="_j_reply" th:onclick="reply([[${commentVO.commentId}]],[[${commentVO.userNickname}]]);">回复</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mcmt-reply-wrap _j_replywrap">
+                <div class="mcmt-tab-con">
+                    <div class="photo-con">
+                        <a href="/u/83852510.html" target="_blank" title="浩哥"><img src="https://p1-q.mafengwo.net/s12/M00/35/6C/wKgED1uqIpCARLIhAAAZUeRPlFM676.png?imageMogr2%2Fthumbnail%2F%2148x48r%2Fgravity%2FCenter%2Fcrop%2F%2148x48%2Fquality%2F90" alt="浩哥"></a>
+                    </div>
+                    <div class="reply-con clearfix _j_article_mode _j_editor" id="_j_editor">
+                        <dl>
+                            <dt>
+                                <div class="reply-choice">
+                                    <a href="javascript:void (0)" title="选择表情">
+                                        <i id="choice-emj" class="far fa-laugh" style="font-size: 30px;color: #a19999"></i>
+                                    </a>
+                                </div>
+                            </dt>
+                            <dd>
+                                <div class="reply-text">
+                                    <textarea id="comment-area" class="_j_replyarea" name="reply_content" cols="30" rows="10"></textarea>
+                                </div>
+                            </dd>
+                        </dl>
+                        <div class="reply-submit">
+                            <!-- 有loading状态 -->
+                            <a href="javascript:void (0)" class="_j_publish_reply" title="发表回复" onclick="submitComment()">发表回复</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="blog-sidebar" style="float: right;width: 270px;margin-right: 50px">
+            <div class="blog-sidebar__widget">
+                <h3>相关游记</h3>
+                <div class="recent-post">
+                    <a th:each="article,articleStat:${data.articleList}" th:href="@{'/article_detail/' + ${article.articleId}}" class="recent-post__item">
+                        <img th:src="${article.articlePicture}" alt="recent-post">
+                        <div class="recent-post__item__info">
+                            <h5 th:text="${article.articleTitle}">5 Eco-Friendly Safari Holidays In Africa</h5>
+                            <span th:text="${article.articleCreateTime}">August 9, 2019</span>
+                        </div>
+                    </a>
+<!--                    <a href="" class="recent-post__item">-->
+<!--                        <img src="/picture/profile-picture/head.png" alt="recent-post2">-->
+<!--                        <div class="recent-post__item__info">-->
+<!--                            <h5>Summer Days In The Alpine Region Of France</h5>-->
+<!--                            <span>August 13, 2019</span>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                    <a href="" class="recent-post__item">-->
+<!--                        <img src="/picture/profile-picture/head.png" alt="recent-post3">-->
+<!--                        <div class="recent-post__item__info">-->
+<!--                            <h5>Classic Swiss Alps Hiking In Kandersteg</h5>-->
+<!--                            <span>August 18, 2019</span>-->
+<!--                        </div>-->
+<!--                    </a>-->
+                </div>
+            </div>
+        </div>
+        <!--举报-->
+        <div class="popup-box layer_dialog _j_dialog pop_no_margin" id="report-box" style="display: none">
+            <div class="dialog_body _j_content">
+                <div class="pop-con report-pop">
+                    <p class="hd">举报原因&nbsp;&nbsp;
+                        <input type="radio" name="reason" value="ad">
+                        <label>广告灌水</label>&nbsp;&nbsp;
+                        <input type="radio" name="reason" value="dirty">
+                        <label>色情暴力</label>&nbsp;&nbsp;
+                        <input type="radio" name="reason" value="country">
+                        <label>危害国家安全</label>&nbsp;&nbsp;
+                        <input type="radio" name="reason" value="error">
+                        <label>错误信息</label>&nbsp;&nbsp;
+                        <input type="radio" name="reason" value="plagiarize">
+                        <label>抄袭</label>&nbsp;&nbsp;
+                        <input type="radio" name="reason" value="attack">
+                        <label>人身攻击</label>&nbsp;&nbsp;
+                        <input type="radio" name="reason" value="minor">
+                        <label>涉未成年人</label>&nbsp;&nbsp;
+                        <input type="radio" name="reason" value="other">
+                        <label>其他</label>
+                    </p>
+                    <p class="bd">
+                        <textarea style="width: 600px" class="_j_report_content" rows="3" cols="80" placeholder="请补充违规内容、出现位置等详细信息"></textarea>
+                    </p>
+                </div>
+                <div class="pop-btn" id="popup_btn">
+                    <input type="button" class="btn-sub _j_report" value="&nbsp;确定&nbsp;" onclick="submitReport()">
+                </div>
+            </div>
+            <a href="javascript:void (0)" id="popup_close" class="close-btn _j_close"><i class="far fa-times-circle"></i></a>
+        </div>
+
+    </section>
+    <script type="text/javascript" th:src="@{/js-css/js/articleDetail.js}"></script>
+
+</body>
+</html>

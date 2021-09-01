@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haoge.travel.mapper.DestinationMapper">
+  <resultMap id="BaseResultMap" type="com.haoge.travel.model.Destination">
+    <id column="destination_id" jdbcType="INTEGER" property="destinationId" />
+    <result column="mark_picture" jdbcType="VARCHAR" property="markPicture" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="destination_name" jdbcType="VARCHAR" property="destinationName" />
+    <result column="higher_level_name" jdbcType="VARCHAR" property="higherLevelName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    destination_id, mark_picture, create_time,destination_name,higher_level_id
+  </sql>
+
+  <select id="selectHotDestinations" resultMap="BaseResultMap">
+    select destination_id,destination_name from destinations
+  </select>
+
+  <select id="selectDestinationsByName" resultMap="BaseResultMap">
+    select destination_id,destination_name,higher_level_name from destinations where destination_name like concat(#{name},'%') limit 0,5
+  </select>
+</mapper>

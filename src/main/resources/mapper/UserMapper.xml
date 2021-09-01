@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haoge.travel.mapper.UserMapper">
+      <resultMap id="BaseResultMap" type="com.haoge.travel.model.User">
+        <id column="user_id" jdbcType="VARCHAR" property="userId" />
+        <result column="user_nickname" jdbcType="VARCHAR" property="userNickname" />
+        <result column="user_account" jdbcType="VARCHAR" property="userAccount" />
+        <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
+        <result column="user_profile_picture" jdbcType="VARCHAR" property="userProfilePicture" />
+        <result column="user_background_picture" jdbcType="VARCHAR" property="userBackgroundPicture" />
+        <result column="user_experience" jdbcType="INTEGER" property="userExperience" />
+        <result column="user_gender" jdbcType="BIT" property="userGender" />
+        <result column="user_create_time" jdbcType="TIMESTAMP" property="userCreateTime" />
+        <result column="user_lock" jdbcType="BIT" property="userLock" />
+        <result column="user_place" jdbcType="VARCHAR" property="userPlace" />
+        <result column="user_signature" jdbcType="VARCHAR" property="userSignature" />
+        <result column="user_level" jdbcType="INTEGER" property="userLevel" />
+      </resultMap>
+      <sql id="Base_Column_List">
+        user_id, user_nickname, user_account, user_password, user_profile_picture, user_background_picture,
+        user_experience, user_gender, user_create_time, user_lock, user_place, user_signature,user_level
+      </sql>
+
+    <select id="selectUserByArticleId" resultMap="BaseResultMap">
+        select b.user_profile_picture,b.user_nickname,b.user_level from article a join user b on a.traveler_id = b.user_id where #{articleId} = a.article_id
+    </select>
+    <insert id="insertUser">
+        insert into user (
+                     user_id,
+                     user_nickname,
+                     user_password,
+                     user_profile_picture,
+                     user_experience,
+                     user_create_time,
+                     user_lock,
+                     user_level
+                      )
+                      values (
+                              #{userId},
+                              #{userNickname},
+                              #{userPassword},
+                              #{userProfilePicture},
+                              #{userExperience},
+                              #{userCreateTime},
+                              #{userLock},
+                              #{userLevel}
+                             )
+    </insert>
+
+
+</mapper>

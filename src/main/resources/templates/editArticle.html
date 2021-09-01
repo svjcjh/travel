@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="header::header(编辑游记)"></div>
+<body>
+    <section>
+        <input type="text" id="article" th:value="${articleId}" hidden="hidden">
+        <!--主图与标题-->
+        <div id="edit-article" style="background-image:url('../picture/page/articlePictureDefault.jpg')">
+        <!--隐藏的上传图片控件-->
+            <input id="file" type="file" style="display: none" onchange="myUpload(this)">
+            <div style="font-size: 20px;margin: auto auto 50px 500px">
+                设置游记头图: &nbsp;<a href="javascript:openFile ()" style="position: relative;top:10px;font-size: 60px;color: white"><i class="far fa-file-image"></i></a>
+            </div>
+            <li class="nav-item" style="list-style: none">
+                <div class="input-group mb-3">
+                    <span style="margin-left: 100px;width: 1000px">
+                        <input id="title" type="text" class="form-control" style="height: 50px" maxlength="40" placeholder="&nbsp;请填写标题">
+                    </span>
+                    <span id="input-length" style="display: none">还可输入<a id="length" style="color: red"></a>字</span>
+                </div>
+            </li>
+        </div>
+        <div style="width: 1000px;margin-top: 30px;padding-left: 100px">
+            <div id="summernote">
+
+            </div>
+            <div style="float: right;margin-top: 30px">
+                <button id="preview" type="button" style="margin-right: 30px" class="btn btn-outline-warning btn-lg">预览</button>
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">发布游记</button>
+                <button id="save" type="button" style="position: absolute;top: 750px;left: 1010px" class="btn btn-info"><i class="fas fa-file-alt"></i> &nbsp;保存草稿</button>
+            </div>
+        </div>
+        <!-- 模态框 -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- 模态框头部 -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">请完善游记信息</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <!-- 模态框主体 -->
+                    <div class="modal-body">
+                        <div class="input-group">
+                            目的地 *：<input type="text" class="form-control" placeholder="旅行地点" id="destination">
+                        </div>
+                        <div id="add-travel-place" style="display: none">
+<!--                            <a class="dropdown-item" href="javascript:dataReplace (0)">Link 1</a>-->
+                        </div>
+                        <div>出发时间：<input id="datetimepicker" type="text" > </div> <div>旅行天数：<input id="Days" type="text"></div> <div>人均消费：<input id="cost" type="text" placeholder="RMB"></div>
+                    </div>
+                    <!-- 模态框底部 -->
+                    <div class="modal-footer">
+                        <button id="public" type="button" class="btn btn-success" >确认发布</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input id="travel-place-id" type="text" hidden="hidden">
+
+        <script type="text/javascript" th:src="@{/js-css/js/editArticle.js}"></script>
+    </section>
+</body>
+</html>

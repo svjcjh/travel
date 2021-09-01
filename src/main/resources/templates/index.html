@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="header::header(首页)"></div>
+<body>
+    <section>
+        <div id="demo" class="carousel slide" data-ride="carousel" style="margin-bottom: 20px">
+
+            <!-- 指示符 -->
+            <ul class="carousel-indicators">
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <li data-target="#demo" data-slide-to="1"></li>
+                <li data-target="#demo" data-slide-to="2"></li>
+                <li data-target="#demo" data-slide-to="3"></li>
+                <li data-target="#demo" data-slide-to="4"></li>
+            </ul>
+
+            <!-- 轮播图片 -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a href="javascript:void (0)">
+                        <img th:src="@{/picture/index-carousel/1.jpg}">
+                    </a>
+                    <div class="carousel-caption">
+                        <h3>第一张图片描述标题</h3>
+                        <p>描述文字!</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a href="javascript:void (0)">
+                        <img th:src="@{/picture/index-carousel/2.jpg}">
+                    </a>
+                    <div class="carousel-caption">
+                        <h3>第二张图片描述标题</h3>
+                        <p>描述文字!</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a href="javascript:void (0)">
+                        <img th:src="@{/picture/index-carousel/3.jpg}">
+                    </a>
+                    <div class="carousel-caption">
+                        <h3>第三张图片描述标题</h3>
+                        <p>描述文字!</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a href="javascript:void (0)">
+                        <img th:src="@{/picture/index-carousel/4.jpg}">
+                    </a>
+                    <div class="carousel-caption">
+                        <h3>第四张图片描述标题</h3>
+                        <p>描述文字!</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a href="javascript:void (0)">
+                        <img th:src="@{/picture/index-carousel/5.jpg}">
+                    </a>
+                    <div class="carousel-caption">
+                        <h3>第五张图片描述标题</h3>
+                        <p>描述文字!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 左右切换按钮 -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+
+        </div>
+
+        <!--游记列表-->
+        <div style="margin: 0 auto;font-size: 18px;width: 800px;word-wrap: break-word">
+            <!--列表导航栏-->
+            <div class="article-list-head" style="height: 40px;border-bottom: 1px solid #bfbfb8">
+                <a id="hot-article" style="color: orange" href="javascript: void (0)">&nbsp;热门游记</a>
+                <span class="dropdown">
+                        <a id="open-menu" href="javascript: void (0)" style="font-size: 13px;color: #4b4747;margin-left: 5px;border: 0.3px solid #bfbfb8;padding: 1px 3px 1px 3px;background-color: white">筛选 &nbsp;<i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-item"></div>
+
+                        </div>
+                    </span>
+                <a id="new-article" href="javascript: void (0)" style="margin-left: 35px">最新发表</a>
+                <a href="/create_article" style="margin-left: 400px;background-color: orange;border-style: none;padding: 3px 25px 3px 25px;color: beige;"> <i class="fas fa-edit"></i>写游记</a>
+            </div>
+            <!--筛选下拉框-->
+            <div id="select-item" style="display:none;">
+                <div style="width: 30px;float: right;font-size: 25px;margin-right: 15px"> <a id="hide-select" href="javascript: void(0)" style="color: #afa9a9"><i class="far fa-times-circle"></i></a> </div>
+                <div id="destination" style="margin: 40px auto auto 35px">
+                    目的地<input id="input" style="width: 400px;height: 45px;margin-left: 30px;font-size: 15px" placeholder="请输入目的地"> <br>
+                    <div class="list-group destination-select" style="display: none">
+
+                    </div>
+                    <span id="destination-span" style="width: 360px;margin-left: 80px;font-size: 15px">
+                        </span>
+                </div>
+                <div id="article-tags" style="margin: 35px auto auto 40px">
+                    兴趣
+                    <div id="tag-group" style="line-height: 50px">
+                    </div>
+                </div>
+
+            </div>
+            <!--游记-->
+            <div id="article-list">
+
+            </div>
+            <!--分页-->
+            <div style="position:relative;float: left;font-size: 12px;margin: 20px auto auto 280px;z-index:-1">
+                <ul class="pagination">
+                </ul>
+            </div>
+
+        </div>
+
+        <link rel="stylesheet" th:href="@{/js-css/css/index.css}">
+        <script type="text/javascript" th:src="@{/js-css/js/index.js}"></script>
+
+    </section>
+</body>
+<!--<div th:replace="footer::footer"></div>-->
+</html>

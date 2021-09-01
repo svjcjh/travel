@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haoge.travel.mapper.ArticleMapper">
+  <resultMap id="BaseResultMap" type="com.haoge.travel.model.Article">
+    <id column="article_id" jdbcType="VARCHAR" property="articleId" />
+    <result column="article_views" jdbcType="INTEGER" property="articleViews" />
+    <result column="article_picture" jdbcType="VARCHAR" property="articlePicture" />
+    <result column="article_likes" jdbcType="INTEGER" property="articleLikes" />
+    <result column="article_collections" jdbcType="INTEGER" property="articleCollections" />
+    <result column="article_create_time" jdbcType="TIMESTAMP" property="articleCreateTime" />
+    <result column="departure_date" jdbcType="DATE" property="departureDate" />
+    <result column="travel_days" jdbcType="INTEGER" property="travelDays" />
+    <result column="travel_cost" jdbcType="INTEGER" property="travelCost" />
+    <result column="travel_place_id" jdbcType="INTEGER" property="travelPlaceId" />
+    <result column="traveler_id" jdbcType="INTEGER" property="travelerId" />
+    <result column="article_status" jdbcType="INTEGER" property="articleStatus" />
+    <result column="article_tag_id" jdbcType="INTEGER" property="articleTagId" />
+    <result column="article_title" jdbcType="VARCHAR" property="articleTitle" />
+    <result column="travel_place" jdbcType="VARCHAR" property="travelPlace" />
+    <result column="article_body" jdbcType="LONGVARCHAR" property="articleBody" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    article_id, article_title,article_views, article_picture, article_likes, article_collections, article_create_time, travel_place,
+    departure_date, travel_days, travel_cost, travel_place_id, traveler_id,article_status,article_tag_id,article_body
+  </sql>
+
+  <select id="selectArticlesByHot" resultMap="BaseResultMap">
+    select travel_place,article_title,article_id,article_views,article_picture,article_likes,travel_place_id,article_title,article_body from article where article_status = 1 order by article_views desc limit #{startIndex},#{dataSize}
+  </select>
+  <select id="selectArticlesByNew" resultMap="BaseResultMap">
+    select travel_place,article_title,article_id,article_views,article_picture,article_likes,travel_place_id,article_title,article_body from article where article_status = 1 order by article_create_time desc limit #{startIndex},#{dataSize}
+  </select>
+  <select id="selectArticlesByTag" resultMap="BaseResultMap">
+    select travel_place,article_title,article_id,article_views,article_picture,article_likes,travel_place_id,article_title,article_body from article where #{selectTag} = article_tag_id and article_status = 1  order by article_views desc limit #{startIndex},#{dataSize}
+  </select>
+  <select id="selectArticlesByDestination" resultMap="BaseResultMap">
+    select travel_place,article_title,article_id,article_views,article_picture,article_likes,travel_place_id,article_title,article_body from article where #{selectDestination} = travel_place_id and article_status = 1  order by article_views desc limit #{startIndex},#{dataSize}
+  </select>
+  <select id="selectDraft" resultType="String">
+    select article_id from article where article_status = 0 and #{userId} = traveler_id;
+  </select>
+  <insert id="insertDraft">
+    insert into article(
+                    article_id,
+                    traveler_id,
+                    article_views,
+                    article_picture,
+                    article_likes,
+                    article_collections,
+                    article_status
+                        )
+                  values(
+                         #{articleId},
+                         #{userId},
+                         0,
+                         '../picture/page/articlePictureDefault.jpg',
+                         0,
+                         0,
+                         0
+                        )
+  </insert>
+  <select id="selectArticleById"  resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from article where #{articleId} = article_id
+  </select>
+    <update id="updateArticleById">
+        update article set article_picture = #{articlePicture},
+                           article_title = #{articleTitle},
+                           article_body = #{articleBody},
+                           travel_place = #{travelPlace},
+                           travel_cost = #{travelCost},
+                           travel_place_id = #{travelPlaceId},
+                           departure_date = #{departureDate},
+                           travel_days = #{travelDays}
+                        where article_id = #{articleId}
+    </update>
+    <update id="updateArticleStatusById">
+        update article set article_status = #{status} where article_id = #{articleId}
+    </update>
+    <select id="selectArticlesByRelationDestination" resultMap="BaseResultMap">
+        select b.article_id,b.article_picture,b.article_title,b.article_create_time from article a join article b on a.travel_place_id = b.travel_place_id and b.article_id != #{articleId} where #{articleId} = a.article_id order by b.article_likes desc limit 0,5
+    </select>
+</mapper>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="header(title)">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+
+    <link rel="stylesheet" th:href="@{/assets/bootstrap-4.3.1/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/fontawesome-free-5.15.4-web/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/summernote-0.8.18-dist/summernote.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/datetimepicker-master/jquery.datetimepicker.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/emoji-dist/css/jquery.mCustomScrollbar.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/emoji-dist/css/jquery.emoji.css}">
+    <link rel="stylesheet" th:href="@{/js-css/css/other.css}">
+
+
+    <script type="text/javascript" th:src="@{/assets/jquery/jquery-3.5.1.min.js}"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script type="text/javascript" th:src="@{/assets/bootstrap-4.3.1/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/assets/summernote-0.8.18-dist/summernote.js}"></script>
+    <script type="text/javascript" th:src="@{/assets/summernote-0.8.18-dist/lang/summernote-zh-CN.min.js}"></script>
+    <script type="text/javascript" th:src="@{/assets/datetimepicker-master/jquery.datetimepicker.full.min.js}"></script>
+
+    <script type="text/javascript" th:src="@{/assets/emoji-dist/js/jquery.mousewheel-3.0.6.min.js}"></script>
+    <script type="text/javascript" th:src="@{/assets/emoji-dist/js/jquery.mCustomScrollbar.min.js}"></script>
+    <script type="text/javascript" th:src="@{/assets/emoji-dist/js/jquery.emoji.min.js}"></script>
+</head>
+
+<body>
+
+    <header style="font-size: 120%">
+        <!--导航栏-->
+        <nav class="navbar navbar-expand-sm bg-white navbar-light">
+            <!--logo-->
+            <a class="navbar-brand" href="#" style="position: absolute;left: 100px;top: 10px"> <img th:src="@{/picture/header-small-sprites3.png}" style="width:60px;height: 30px;"> </a>
+            <!-- Links -->
+            <ul class="navbar-nav" style="position: relative;left: 180px">
+                <li class="nav-item">
+                    <a id="nav-index" class="nav-link" th:href="@{/index}">&nbsp首页&nbsp</a>
+                </li>
+                <li class="nav-item">
+                    <a id="nav-destination" class="nav-link" th:href="@{/destination}">&nbsp目的地&nbsp</a>
+                </li>
+                <li class="nav-item">
+                    <a id="nav-question" class="nav-link" th:href="@{/question}">&nbsp问答&nbsp</a>
+                </li>
+                <!--搜索框-->
+                <li class="nav-item" style="position:relative;left:60px;">
+                    <div class="input-group mb-3">
+                        <a class="nav-link"> <input type="text" class="form-control" style="width: 150%;height: calc(1.5em + .75rem + 1px);font-size: 1.1rem" placeholder="游记/目的地/用户"> </a>
+                    </div>
+                </li>
+                <!--搜索图标-->
+                <li class="nav-item" style="position:relative;left: 180px;top:5px">
+                    <a class="nav-link" href="javascript:void (0)">
+                        <i class="fas fa-search"></i>
+                    </a>
+                </li>
+
+                <!--打卡按钮-->
+                <li th:if="1 == 1" class="nav-item" style="position: relative;left: 240px">
+                    <a class="nav-link"> <button id="sign" type="button" class="btn btn-primary btn-sm">打卡</button> </a>
+                </li>
+
+                <!-- 消息下拉框 -->
+                <li th:if="1 == 1" id="my-messages" class="nav-item dropdown" style="position: relative;left: 250px">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        &nbsp <i class="far fa-comment-dots"></i> 消息
+                    </a>
+                    <div id="message" class="dropdown-menu">
+                        <a class="dropdown-item" href="#" style="color: #6d6c6c">系统消息</a>
+                        <a class="dropdown-item" href="#" style="color: #6d6c6c">问答消息</a>
+                        <a class="dropdown-item" href="#" style="color: #6d6c6c">回复消息</a>
+                        <a class="dropdown-item" href="#" style="color: #6d6c6c">收藏</a>
+                        <a class="dropdown-item" href="#" style="color: #6d6c6c">好友动态</a>
+                    </div>
+                </li>
+                <!-- 头像下拉框 -->
+                <li th:if="1 == 1" id="user-config" class="nav-item dropdown" style="position: relative;left: 255px">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                        &nbsp <img th:src="@{/picture/profile-picture/head.png}" class="rounded-circle" style="width:30px;">
+                    </a>
+                    <div id="config" class="dropdown-menu" style="left: -40px">
+                        <a class="dropdown-item" href="#" style="color: #6d6c6c"> <i class="fas fa-home"></i> 我的马蜂窝</a>
+                        <a class="dropdown-item" href="#" style="color: #6d6c6c"> <i class="fas fa-feather-alt"></i> 写游记</a>
+                        <a class="dropdown-item" href="#" style="color: #6d6c6c"> <i class="far fa-question-circle"></i> 我的问答</a>
+                        <a class="dropdown-item" href="#" style="color: #6d6c6c"> <i class="fas fa-user-friends"></i> 我的好友</a>
+                        <a class="dropdown-item" href="#" style="color: #6d6c6c"> <i class="fas fa-journal-whills"></i> 我的收藏</a>
+                        <a class="dropdown-item" href="#" style="color: #6d6c6c"> <i class="fas fa-envelope-open-text"></i> 意见反馈</a>
+                        <a class="dropdown-item" href="#" style="color: #6d6c6c"> <i class="fas fa-wrench"></i> 设置</a>
+                        <a class="dropdown-item" href="#" style="color: #6d6c6c"> <i class="fas fa-sign-out-alt"></i> 退出</a>
+                    </div>
+                </li>
+
+                <!--如果未登录-->
+                <li th:if="1 == 2" class="nav-item" style="position: relative;left: 280px;font-size: 80%">
+                    <a class="nav-link" href="#" style="color: orange;">登录</a>
+                </li>
+
+                <li th:if="1 == 2" class="nav-item" style="position: relative;left: 280px;font-size: 80%">
+                    <a class="nav-link">|</a>
+                </li>
+
+                <li th:if="1 == 2" class="nav-item" style="position: relative;left: 280px;font-size: 80%">
+                    <a class="nav-link" href="#" style="color: orange;">注册</a>
+                </li>
+
+            </ul>
+        </nav>
+        <input id="userId" th:value="${session.userId}" hidden="hidden"/>
+
+        <script type="text/javascript" th:src="@{/js-css/js/header.js}"></script>
+
+    </header>
+
+</body>
+</html>

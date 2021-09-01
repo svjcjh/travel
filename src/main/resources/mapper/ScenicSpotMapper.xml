@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haoge.travel.mapper.ScenicSpotMapper">
+  <resultMap id="BaseResultMap" type="com.haoge.travel.model.ScenicSpot">
+    <id column="scenic_spot_id" jdbcType="INTEGER" property="scenicSpotId" />
+    <result column="destination_id" jdbcType="INTEGER" property="destinationId" />
+    <result column="scenic_spot_name" jdbcType="VARCHAR" property="scenicSpotName" />
+    <result column="scenic_spot_introducetion" jdbcType="VARCHAR" property="scenicSpotIntroducetion" />
+    <result column="scenic_spot_picture" jdbcType="VARCHAR" property="scenicSpotPicture" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    scenic_spot_id, destination_id, scenic_spot_name, scenic_spot_introducetion, scenic_spot_picture
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from scenic_spot
+    where scenic_spot_id = #{scenicSpotId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from scenic_spot
+    where scenic_spot_id = #{scenicSpotId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.haoge.travel.model.ScenicSpot">
+    insert into scenic_spot (scenic_spot_id, destination_id, scenic_spot_name, 
+      scenic_spot_introducetion, scenic_spot_picture
+      )
+    values (#{scenicSpotId,jdbcType=INTEGER}, #{destinationId,jdbcType=INTEGER}, #{scenicSpotName,jdbcType=VARCHAR}, 
+      #{scenicSpotIntroducetion,jdbcType=VARCHAR}, #{scenicSpotPicture,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.haoge.travel.model.ScenicSpot">
+    insert into scenic_spot
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="scenicSpotId != null">
+        scenic_spot_id,
+      </if>
+      <if test="destinationId != null">
+        destination_id,
+      </if>
+      <if test="scenicSpotName != null">
+        scenic_spot_name,
+      </if>
+      <if test="scenicSpotIntroducetion != null">
+        scenic_spot_introducetion,
+      </if>
+      <if test="scenicSpotPicture != null">
+        scenic_spot_picture,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="scenicSpotId != null">
+        #{scenicSpotId,jdbcType=INTEGER},
+      </if>
+      <if test="destinationId != null">
+        #{destinationId,jdbcType=INTEGER},
+      </if>
+      <if test="scenicSpotName != null">
+        #{scenicSpotName,jdbcType=VARCHAR},
+      </if>
+      <if test="scenicSpotIntroducetion != null">
+        #{scenicSpotIntroducetion,jdbcType=VARCHAR},
+      </if>
+      <if test="scenicSpotPicture != null">
+        #{scenicSpotPicture,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.haoge.travel.model.ScenicSpot">
+    update scenic_spot
+    <set>
+      <if test="destinationId != null">
+        destination_id = #{destinationId,jdbcType=INTEGER},
+      </if>
+      <if test="scenicSpotName != null">
+        scenic_spot_name = #{scenicSpotName,jdbcType=VARCHAR},
+      </if>
+      <if test="scenicSpotIntroducetion != null">
+        scenic_spot_introducetion = #{scenicSpotIntroducetion,jdbcType=VARCHAR},
+      </if>
+      <if test="scenicSpotPicture != null">
+        scenic_spot_picture = #{scenicSpotPicture,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where scenic_spot_id = #{scenicSpotId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.haoge.travel.model.ScenicSpot">
+    update scenic_spot
+    set destination_id = #{destinationId,jdbcType=INTEGER},
+      scenic_spot_name = #{scenicSpotName,jdbcType=VARCHAR},
+      scenic_spot_introducetion = #{scenicSpotIntroducetion,jdbcType=VARCHAR},
+      scenic_spot_picture = #{scenicSpotPicture,jdbcType=VARCHAR}
+    where scenic_spot_id = #{scenicSpotId,jdbcType=INTEGER}
+  </update>
+</mapper>

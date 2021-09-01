@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration
+1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <!-- 指定连接数据库的JDBC 驱动包所在位置，指定到你本机的完整路径 -->
+    <classPathEntry location="C:\Program Files (x86)\MySQL\Connector J 8.0\mysql-connector-java-8.0.22.jar"/>
+
+    <!-- 配置table 表信息内容体，targetRuntime 指定采用MyBatis3 的版本 -->
+    <context id="tables" targetRuntime="MyBatis3">
+
+        <!-- 抑制生成注释，由于生成的注释都是英文的，可以不让它生成 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <!-- 配置数据库连接信息 -->
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+
+                        connectionURL="jdbc:mysql://localhost:3306/travel?serverTimezone=UTC"
+                        userId="root"
+                        password="520666">
+        </jdbcConnection>
+
+        <!-- 生成model 类，targetPackage 指定model 类的包名， targetProject
+指定生成的model 放在eclipse 的哪个工程下面-->
+        <javaModelGenerator targetPackage="com.haoge.travel.model"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="false" />
+            <property name="trimStrings" value="false" />
+        </javaModelGenerator>
+
+        <!-- 生成MyBatis 的Mapper.xml 文件，targetPackage 指定mapper.xml 文
+件的包名， targetProject 指定生成的mapper.xml 放在eclipse 的哪个工程下面 -->
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+
+        <!-- 生成MyBatis 的Mapper 接口类文件,targetPackage 指定Mapper 接口类
+的包名， targetProject 指定生成的Mapper 接口放在eclipse 的哪个工程下面 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.haoge.travel.mapper"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+        <!-- 数据库表名及对应的Java 模型类名 -->
+        <table tableName="admin" domainObjectName="Admin"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+
+        <table tableName="article" domainObjectName="Article"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+
+        <table tableName="comments" domainObjectName="Comment"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+
+        <table tableName="destinations" domainObjectName="Destination"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+
+        <table tableName="question_tags" domainObjectName="QuestionTag"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+
+        <table tableName="questions" domainObjectName="Question"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+
+        <table tableName="responses" domainObjectName="Response"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+
+        <table tableName="scenic_spot" domainObjectName="ScenicSpot"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+
+        <table tableName="travel_line" domainObjectName="TravelLine"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+
+        <table tableName="user" domainObjectName="User"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+
+
+    </context>
+
+</generatorConfiguration>

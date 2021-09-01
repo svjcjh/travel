@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haoge.travel.mapper.AdminMapper">
+<!--  <resultMap id="BaseResultMap" type="com.haoge.travel.model.Admin">-->
+<!--    <id column="admin_id" jdbcType="INTEGER" property="adminId" />-->
+<!--    <result column="admin_account" jdbcType="VARCHAR" property="adminAccount" />-->
+<!--    <result column="admin_password" jdbcType="VARCHAR" property="adminPassword" />-->
+<!--    <result column="admin_lock" jdbcType="BIT" property="adminLock" />-->
+<!--    <result column="admin_nickname" jdbcType="VARCHAR" property="adminNickname" />-->
+<!--  </resultMap>-->
+<!--  <sql id="Base_Column_List">-->
+<!--    admin_id, admin_account, admin_password, admin_lock, admin_nickname-->
+<!--  </sql>-->
+<!--  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">-->
+<!--    select -->
+<!--    <include refid="Base_Column_List" />-->
+<!--    from admin-->
+<!--    where admin_id = #{adminId,jdbcType=INTEGER}-->
+<!--  </select>-->
+<!--  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">-->
+<!--    delete from admin-->
+<!--    where admin_id = #{adminId,jdbcType=INTEGER}-->
+<!--  </delete>-->
+<!--  <insert id="insert" parameterType="com.haoge.travel.model.Admin">-->
+<!--    insert into admin (admin_id, admin_account, admin_password, -->
+<!--      admin_lock)-->
+<!--    values (#{adminId,jdbcType=INTEGER}, #{adminAccount,jdbcType=VARCHAR}, #{adminPassword,jdbcType=VARCHAR}, -->
+<!--      #{adminLock,jdbcType=TINYINT})-->
+<!--  </insert>-->
+<!--  <insert id="insertSelective" parameterType="com.haoge.travel.model.Admin">-->
+<!--    insert into admin-->
+<!--    <trim prefix="(" suffix=")" suffixOverrides=",">-->
+<!--      <if test="adminId != null">-->
+<!--        admin_id,-->
+<!--      </if>-->
+<!--      <if test="adminAccount != null">-->
+<!--        admin_account,-->
+<!--      </if>-->
+<!--      <if test="adminPassword != null">-->
+<!--        admin_password,-->
+<!--      </if>-->
+<!--      <if test="adminLock != null">-->
+<!--        admin_lock,-->
+<!--      </if>-->
+<!--    </trim>-->
+<!--    <trim prefix="values (" suffix=")" suffixOverrides=",">-->
+<!--      <if test="adminId != null">-->
+<!--        #{adminId,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="adminAccount != null">-->
+<!--        #{adminAccount,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="adminPassword != null">-->
+<!--        #{adminPassword,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="adminLock != null">-->
+<!--        #{adminLock,jdbcType=TINYINT},-->
+<!--      </if>-->
+<!--    </trim>-->
+<!--  </insert>-->
+<!--  <update id="updateByPrimaryKeySelective" parameterType="com.haoge.travel.model.Admin">-->
+<!--    update admin-->
+<!--    <set>-->
+<!--      <if test="adminAccount != null">-->
+<!--        admin_account = #{adminAccount,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="adminPassword != null">-->
+<!--        admin_password = #{adminPassword,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="adminLock != null">-->
+<!--        admin_lock = #{adminLock,jdbcType=TINYINT},-->
+<!--      </if>-->
+<!--    </set>-->
+<!--    where admin_id = #{adminId,jdbcType=INTEGER}-->
+<!--  </update>-->
+<!--  <update id="updateByPrimaryKey" parameterType="com.haoge.travel.model.Admin">-->
+<!--    update admin-->
+<!--    set admin_account = #{adminAccount,jdbcType=VARCHAR},-->
+<!--      admin_password = #{adminPassword,jdbcType=VARCHAR},-->
+<!--      admin_lock = #{adminLock,jdbcType=TINYINT}-->
+<!--    where admin_id = #{adminId,jdbcType=INTEGER}-->
+<!--  </update>-->
+
+<!--  -->
+<!--  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">-->
+<!--    delete from admin-->
+<!--    where admin_id = #{adminId,jdbcType=INTEGER}-->
+<!--  </delete>-->
+<!--  <insert id="insert" parameterType="com.haoge.travel.model.Admin">-->
+<!--    insert into admin (admin_id, admin_account, admin_password, -->
+<!--      admin_lock, admin_nickname)-->
+<!--    values (#{adminId,jdbcType=INTEGER}, #{adminAccount,jdbcType=VARCHAR}, #{adminPassword,jdbcType=VARCHAR}, -->
+<!--      #{adminLock,jdbcType=BIT}, #{adminNickname,jdbcType=VARCHAR})-->
+<!--  </insert>-->
+<!--  <insert id="insertSelective" parameterType="com.haoge.travel.model.Admin">-->
+<!--    insert into admin-->
+<!--    <trim prefix="(" suffix=")" suffixOverrides=",">-->
+<!--      <if test="adminId != null">-->
+<!--        admin_id,-->
+<!--      </if>-->
+<!--      <if test="adminAccount != null">-->
+<!--        admin_account,-->
+<!--      </if>-->
+<!--      <if test="adminPassword != null">-->
+<!--        admin_password,-->
+<!--      </if>-->
+<!--      <if test="adminLock != null">-->
+<!--        admin_lock,-->
+<!--      </if>-->
+<!--      <if test="adminNickname != null">-->
+<!--        admin_nickname,-->
+<!--      </if>-->
+<!--    </trim>-->
+<!--    <trim prefix="values (" suffix=")" suffixOverrides=",">-->
+<!--      <if test="adminId != null">-->
+<!--        #{adminId,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="adminAccount != null">-->
+<!--        #{adminAccount,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="adminPassword != null">-->
+<!--        #{adminPassword,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="adminLock != null">-->
+<!--        #{adminLock,jdbcType=BIT},-->
+<!--      </if>-->
+<!--      <if test="adminNickname != null">-->
+<!--        #{adminNickname,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--    </trim>-->
+<!--  </insert>-->
+<!--  <update id="updateByPrimaryKeySelective" parameterType="com.haoge.travel.model.Admin">-->
+<!--    update admin-->
+<!--    <set>-->
+<!--      <if test="adminAccount != null">-->
+<!--        admin_account = #{adminAccount,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="adminPassword != null">-->
+<!--        admin_password = #{adminPassword,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="adminLock != null">-->
+<!--        admin_lock = #{adminLock,jdbcType=BIT},-->
+<!--      </if>-->
+<!--      <if test="adminNickname != null">-->
+<!--        admin_nickname = #{adminNickname,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--    </set>-->
+<!--    where admin_id = #{adminId,jdbcType=INTEGER}-->
+<!--  </update>-->
+<!--  <update id="updateByPrimaryKey" parameterType="com.haoge.travel.model.Admin">-->
+<!--    update admin-->
+<!--    set admin_account = #{adminAccount,jdbcType=VARCHAR},-->
+<!--      admin_password = #{adminPassword,jdbcType=VARCHAR},-->
+<!--      admin_lock = #{adminLock,jdbcType=BIT},-->
+<!--      admin_nickname = #{adminNickname,jdbcType=VARCHAR}-->
+<!--    where admin_id = #{adminId,jdbcType=INTEGER}-->
+<!--  </update>-->
+</mapper>
